@@ -1,0 +1,30 @@
+<footer class="site-footer" role="contentinfo">
+
+  <img class="footer-emblem" src="/images/logos/logo-footer.png" alt="Ancient Martinist Order Emblem">
+  <span class="site-footer__name">Ancient Martinist Order — Philippines</span>
+  <span class="site-footer__tagline">Pax ✦ Lux ✦ Veritas</span>
+
+  <div class="site-footer__divider" role="separator"></div>
+
+  <nav aria-label="Footer navigation">
+    <ul class="site-footer__links" role="list">
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/history.html">History &amp; Lineage</a></li>
+      <li><a href="/membership.html">Membership</a></li>
+      <li><a href="/blog.html">Blog</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <p class="site-footer__copy">
+    © <span id="footer-year">2025</span> Ancient Martinist Order – Philippines
+    · All rights reserved.
+  </p>
+
+</footer>
+
+<script>
+  var yearEl = document.getElementById('footer-year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+</script>

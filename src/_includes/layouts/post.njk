@@ -1,0 +1,137 @@
+---
+layout: layouts/base.njk
+---
+
+<!-- ── Post Hero ── -->
+<div class="post-hero">
+  <div class="post-hero__bg" aria-hidden="true"></div>
+  <div class="post-hero__inner">
+
+    <a class="back-link" href="/blog.html">← Back to Journal</a>
+
+    <span class="post-hero__date">{{ date | postDate }} · {{ category }}</span>
+
+    <h1 class="post-hero__title">{{ title }}</h1>
+
+    <p class="post-hero__desc">{{ description }}</p>
+
+    <div class="post-share-bar" aria-label="Share options">
+      <span class="post-share-bar__label">Share</span>
+      <button class="post-share-btn" onclick="copyPostLink(this)">Copy Link</button>
+      <a class="post-share-btn"
+         href="https://www.facebook.com/sharer/sharer.php?u=https://amoph.org{{ page.url }}"
+         target="_blank" rel="noopener noreferrer">Facebook</a>
+      <a class="post-share-btn"
+         href="https://twitter.com/intent/tweet?url=https://amoph.org{{ page.url }}&text={{ title | urlencode }}"
+         target="_blank" rel="noopener noreferrer">Twitter / X</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── Post Layout ── -->
+<main>
+  <div class="post-layout">
+
+    <article class="post-body">
+      {{ content | safe }}
+
+      <hr>
+
+      <!-- Bottom share -->
+      <div class="post-share-section">
+        <span class="post-share-section__title">Share this article</span>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+          <button class="post-share-btn" onclick="copyPostLink(this)">Copy Link</button>
+          <a class="post-share-btn"
+             href="https://www.facebook.com/sharer/sharer.php?u=https://amoph.org{{ page.url }}"
+             target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a class="post-share-btn"
+             href="https://twitter.com/intent/tweet?url=https://amoph.org{{ page.url }}"
+             target="_blank" rel="noopener noreferrer">Twitter / X</a>
+        </div>
+      </div>
+
+      <!-- Post pagination -->
+      <nav class="post-pagination" aria-label="Post navigation">
+        {% if prevPost %}
+        <a class="post-nav-btn" href="{{ prevPost.url }}">
+          <span class="post-nav-btn__label">← Previous</span>
+          <span class="post-nav-btn__title">{{ prevPost.data.title }}</span>
+        </a>
+        {% else %}
+        <span class="post-nav-btn post-nav-btn--disabled">
+          <span class="post-nav-btn__label">← Previous</span>
+          <span class="post-nav-btn__title">No previous post</span>
+        </span>
+        {% endif %}
+
+        {% if nextPost %}
+        <a class="post-nav-btn post-nav-btn--next" href="{{ nextPost.url }}">
+          <span class="post-nav-btn__label">Next →</span>
+          <span class="post-nav-btn__title">{{ nextPost.data.title }}</span>
+        </a>
+        {% else %}
+        <span class="post-nav-btn post-nav-btn--next post-nav-btn--disabled">
+          <span class="post-nav-btn__label">Next →</span>
+          <span class="post-nav-btn__title">No next post</span>
+        </span>
+        {% endif %}
+      </nav>
+    </article>
+
+    <!-- ── Sidebar ── -->
+    <aside class="post-sidebar" aria-label="Post sidebar">
+
+      <div class="sidebar-widget">
+        <h3 class="sidebar-widget__title">The Martinist Journal</h3>
+        <p style="font-size:0.88rem; color:rgba(245,240,228,0.58); line-height:1.65; margin:0;">
+          Writings on Martinism, Western esotericism, and the inner life. Published by the
+          Ancient Martinist Order Philippines.
+        </p>
+      </div>
+
+      <div class="sidebar-widget">
+        <h3 class="sidebar-widget__title">Recent Articles</h3>
+        <ul>
+          {% for post in collections.posts | slice(0, 4) %}
+            {% if post.url != page.url %}
+            <li><a href="{{ post.url }}">{{ post.data.title }}</a></li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="sidebar-widget" style="text-align:center;">
+        <h3 class="sidebar-widget__title">Answer the Call</h3>
+        <p style="font-size:0.88rem; color:rgba(245,240,228,0.58); margin-bottom:1.2rem; line-height:1.6;">
+          Initiation is free, personal, and available to sincere seekers in the Philippines.
+        </p>
+        <a href="/membership.html" class="btn-primary" style="width:100%; text-align:center; display:block;">
+          Learn More
+        </a>
+      </div>
+
+    </aside>
+
+  </div>
+</main>
+
+{% block scripts %}
+<script>
+  function copyPostLink(btn) {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      const original = btn.textContent;
+      btn.textContent = 'Copied!';
+      btn.classList.add('post-share-btn--copied');
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.classList.remove('post-share-btn--copied');
+      }, 2000);
+    }).catch(() => {
+      btn.textContent = 'Copy failed';
+      setTimeout(() => { btn.textContent = 'Copy Link'; }, 2000);
+    });
+  }
+</script>
+{% endblock %}

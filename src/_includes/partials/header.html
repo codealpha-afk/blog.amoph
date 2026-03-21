@@ -1,0 +1,40 @@
+<header>
+  <nav class="site-header" id="navbar" role="navigation" aria-label="Main navigation">
+
+    <a class="site-header__logo" href="/index.html">
+      <img src="/images/logos/logo-mini.png" alt="AMO Logo" class="logo-icon">
+      <span>AMO · Philippines</span>
+    </a>
+
+    <ul class="site-header__links" role="list">
+      <li><a href="/index.html"      id="nav-home">Home</a></li>
+      <li><a href="/about.html"      id="nav-about">About Us</a></li>
+      <li><a href="/history.html"    id="nav-history">History &amp; Lineage</a></li>
+      <li><a href="/membership.html" id="nav-membership">Membership</a></li>
+      <li><a href="/blog.html"       id="nav-blog">Blog</a></li>
+      <li><a href="/contact.html"    id="nav-contact">Contact</a></li>
+    </ul>
+
+    <button
+      class="site-header__hamburger"
+      id="hamburger"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </nav>
+</header>
+
+<nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" aria-hidden="true">
+  <a href="/index.html"      onclick="closeMobileNav()">Home</a>
+  <a href="/about.html"      onclick="closeMobileNav()">About Us</a>
+  <a href="/history.html"    onclick="closeMobileNav()">History &amp; Lineage</a>
+  <a href="/membership.html" onclick="closeMobileNav()">Membership</a>
+  <a href="/blog.html"       onclick="closeMobileNav()">Blog</a>
+  <a href="/contact.html"    onclick="closeMobileNav()">Contact</a>
+</nav>

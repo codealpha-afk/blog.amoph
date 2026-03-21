@@ -1,0 +1,68 @@
+---
+layout: layouts/base.njk
+title: The Martinist Journal
+description: Writings on Martinism, Western esotericism, and the inner life. Published by the Ancient Martinist Order Philippines.
+---
+
+<div class="page-hero">
+  <div class="page-hero__inner">
+    <span class="page-eyebrow">The Martinist Journal</span>
+    <h1>Writings &amp; <em>Reflections</em></h1>
+  </div>
+</div>
+
+<div class="content-area">
+  <div class="blog-layout">
+
+    <div class="blog-main">
+      {% for post in collections.posts %}
+      <a class="blog-card" href="{{ post.url }}">
+        <div class="blog-card__meta">
+          <span class="blog-card__date">{{ post.date | postDate }}</span>
+          <span class="blog-card__tag">{{ post.data.category }}</span>
+        </div>
+        <div class="blog-card__body">
+          <h2 class="blog-card__title">{{ post.data.title }}</h2>
+          <p class="blog-card__excerpt">{{ post.data.excerpt }}</p>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+
+    <aside class="blog-sidebar">
+
+      <div class="sidebar-widget">
+        <h3 class="sidebar-widget__title">Categories</h3>
+        <ul>
+          <li><a href="#">Doctrine &amp; Philosophy</a></li>
+          <li><a href="#">History &amp; Lineage</a></li>
+          <li><a href="#">Initiation</a></li>
+          <li><a href="#">Spiritual Practice</a></li>
+          <li><a href="#">Philippines</a></li>
+          <li><a href="#">Western Esotericism</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-widget">
+        <h3 class="sidebar-widget__title">Recent Posts</h3>
+        <ul>
+          {% for post in collections.posts | slice(0, 4) %}
+          <li><a href="{{ post.url }}">{{ post.data.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="sidebar-widget" style="text-align:center;">
+        <h3 class="sidebar-widget__title">Feel the Call?</h3>
+        <p style="font-size:0.88rem; color:rgba(245,240,228,0.6); margin-bottom:1.2rem; line-height:1.65;">
+          If these writings resonate, perhaps the path is calling you.
+        </p>
+        <a href="/membership.html" class="btn-primary" style="width:100%; text-align:center; display:block;">
+          Learn About Initiation
+        </a>
+      </div>
+
+    </aside>
+
+  </div>
+</div>

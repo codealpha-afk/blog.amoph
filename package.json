@@ -1,0 +1,13 @@
+{
+  "name": "amoph-site",
+  "version": "1.0.0",
+  "description": "Ancient Martinist Order Philippines — Static Site",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "luxon": "^3.4.4"
+  }
+}
