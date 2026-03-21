@@ -1,5 +1,5 @@
 // =============================================================
-//  AMOPH · script.js (FINAL CLEAN VERSION)
+//  AMOPH · script.js (ELEVENTY VERSION)
 // =============================================================
 
 // ─── MOBILE NAV ──────────────────────────────────────────────
@@ -38,72 +38,41 @@ function closeMobileNav() {
   document.body.classList.remove('nav-open');
 }
 
-// Close on Escape
-document.addEventListener('keydown', function (e) {
-  if (e.key === 'Escape') closeMobileNav();
-});
-
 // ─── DOM READY ───────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  // ─── LOAD HEADER ─────────────────────────────
-  fetch('/header.html')
-    .then(res => res.text())
-    .then(data => {
-      var header = document.getElementById('site-header');
-      if (header) header.innerHTML = data;
+  // HAMBURGER
+  var hamburger = document.getElementById('hamburger');
+  if (hamburger) {
+    hamburger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      toggleMobileNav();
+    });
+  }
 
-      // HAMBURGER (after injection)
-      var hamburger = document.getElementById('hamburger');
+  // CLOSE ON ESCAPE
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeMobileNav();
+  });
 
-      if (hamburger) {
-        hamburger.addEventListener('click', function (e) {
-          e.stopPropagation();
-          toggleMobileNav();
-        });
+  // ACTIVE NAV
+  var path = window.location.pathname;
+  document.querySelectorAll('.site-header__links a').forEach(function (link) {
+    if (link.getAttribute('href') === path) {
+      link.classList.add('active');
+    }
+  });
 
-        hamburger.addEventListener('touchend', function (e) {
-          e.preventDefault();
-          e.stopPropagation();
-          toggleMobileNav();
-        });
-      }
+  // CLOSE MENU ON LINK CLICK
+  document.querySelectorAll('#mobile-nav a').forEach(function (link) {
+    link.addEventListener('click', closeMobileNav);
+  });
 
-      // ACTIVE NAV
-      var path = window.location.pathname;
-
-      document.querySelectorAll('.site-header__links a').forEach(function(link) {
-        if (link.getAttribute('href') === path) {
-          link.classList.add('active');
-        }
-      });
-
-      // CLOSE MENU ON LINK CLICK
-      document.querySelectorAll('#mobile-nav a').forEach(function(link) {
-        link.addEventListener('click', closeMobileNav);
-      });
-
-    })
-    .catch(err => console.error('Header error:', err));
-
-  // ─── LOAD FOOTER ─────────────────────────────
-  fetch('/footer.html')
-    .then(res => res.text())
-    .then(data => {
-      var footer = document.getElementById('site-footer');
-      if (footer) footer.innerHTML = data;
-
-      var yearEl = document.getElementById('footer-year');
-      if (yearEl) yearEl.textContent = new Date().getFullYear();
-    })
-    .catch(err => console.error('Footer error:', err));
-
-  // CLOSE NAV OUTSIDE CLICK
+  // CLOSE NAV ON OUTSIDE CLICK
   document.addEventListener('click', function (e) {
     var nav = document.getElementById('mobile-nav');
-    var hb  = document.getElementById('hamburger');
-
+    var hb = document.getElementById('hamburger');
     if (nav && nav.classList.contains('open')) {
       if (!nav.contains(e.target) && hb && !hb.contains(e.target)) {
         closeMobileNav();
