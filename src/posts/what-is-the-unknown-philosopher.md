@@ -1,12 +1,16 @@
 ---
-layout: layouts/post.njk
 title: What is the Unknown Philosopher?
-description: Saint-Martin chose his pen name with care — not a mask of anonymity, but a declaration of spiritual posture.
-excerpt: Saint-Martin chose his pen name with care. The "Unknown Philosopher" was not a mask of anonymity but a declaration of spiritual posture — the seeker who works in silence, without public acclaim or institutional recognition.
 date: 2025-03-01
 category: Doctrine
+description: Saint-Martin chose his pen name with care — not a mask of
+  anonymity, but a declaration of spiritual posture.
+excerpt: Saint-Martin chose his pen name with care. The "Unknown Philosopher"
+  was not a mask of anonymity but a declaration of spiritual posture — the
+  seeker who works in silence, without public acclaim or institutional
+  recognition.
+tags: posts
+layout: layouts/post.njk
 ---
-
 Louis-Claude de Saint-Martin published his most important works under a pen name: *le Philosophe Inconnu* — the Unknown Philosopher. This was not, as is sometimes assumed, a precaution against persecution. By the time Saint-Martin was writing, the Revolutionary climate had shifted, and he faced no particular danger from his religious views. The choice was deliberate, and it was theological.
 
 ## The Meaning of Unknowing
