@@ -7,8 +7,8 @@ content:
     label: Blog Posts
     type: collection
     path: src/posts
-    filename: "{fields.slug}"
-    extension: md
+    filename: "{fields.slug}.md"
+    
     view:
       fields: [title, date, category]
     fields:
