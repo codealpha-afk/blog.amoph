@@ -1071,6 +1071,7 @@ a {
   min-height: 48vh;
   display: flex;
   align-items: flex-end;
+  justify-content: center;
   padding: 10rem 4rem 4rem;
   position: relative;
   overflow: hidden;
