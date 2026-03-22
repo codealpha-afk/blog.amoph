@@ -66,4 +66,6 @@ The hour, as the Order itself has said, has arrived. There is much to be done an
 
 ---
 
-*For those drawn to explore this path, the Ancient Martinist Order Philippines welcomes sincere seekers. The door, as it has always been, opens from within.*
+> *For those drawn to explore this path, the Ancient Martinist Order Philippines welcomes sincere seekers. The door, as it has always been, opens from within.*
+
+&nbsp;
