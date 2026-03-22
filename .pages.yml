@@ -36,6 +36,10 @@ content:
       - name: excerpt
         label: Excerpt (shown on blog listing)
         type: string
+      - name: draft
+        label: Draft
+        type: boolean
+        default: false
       - name: tags
         label: Tags
         type: string
