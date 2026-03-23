@@ -21,7 +21,6 @@ async function imageShortcode(src, alt, sizes = "100vw") {
 module.exports = function(eleventyConfig) {
 
   // ── Plugins ──
-  eleventyConfig.addPlugin(rss);
   eleventyConfig.addPlugin(sitemap, {
     sitemap: {
       hostname: "https://blog.amoph.org",
