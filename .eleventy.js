@@ -1,5 +1,28 @@
 const { DateTime } = require("luxon");
+const Image = require("@11ty/eleventy-img");
+
+// ── Image shortcode ──
+async function imageShortcode(src, alt, sizes = "100vw") {
+  let metadata = await Image(src, {
+    widths: [400, 800, 1200],
+    formats: ["webp", "jpeg"],
+    outputDir: "./public/images/",
+    urlPath: "/images/",
+  });
+
+  return Image.generateHTML(metadata, {
+    alt,
+    sizes,
+    loading: "lazy",
+    decoding: "async",
+  });
+}
+
 module.exports = function(eleventyConfig) {
+
+  // ── Image shortcode ──
+  eleventyConfig.addAsyncShortcode("image", imageShortcode);
+
   // ── Copy static assets as-is ──
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/js");
