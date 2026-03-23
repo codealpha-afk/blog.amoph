@@ -1,5 +1,7 @@
 const { DateTime } = require("luxon");
 const Image = require("@11ty/eleventy-img");
+const rss = require("@11ty/eleventy-plugin-rss");
+const sitemap = require("eleventy-plugin-sitemap");
 
 // ── Image shortcode ──
 async function imageShortcode(src, alt, sizes = "100vw") {
@@ -9,7 +11,6 @@ async function imageShortcode(src, alt, sizes = "100vw") {
     outputDir: "./public/images/",
     urlPath: "/images/",
   });
-
   return Image.generateHTML(metadata, {
     alt,
     sizes,
@@ -20,8 +21,24 @@ async function imageShortcode(src, alt, sizes = "100vw") {
 
 module.exports = function(eleventyConfig) {
 
+  // ── Plugins ──
+  eleventyConfig.addPlugin(rss);
+  eleventyConfig.addPlugin(sitemap, {
+    sitemap: {
+      hostname: "https://blog.amoph.org",
+    },
+  });
+
   // ── Image shortcode ──
   eleventyConfig.addAsyncShortcode("image", imageShortcode);
+
+  // ── Reading time filter ──
+  eleventyConfig.addFilter("readingTime", (content) => {
+    const wordsPerMinute = 200;
+    const words = content.trim().split(/\s+/).length;
+    const minutes = Math.ceil(words / wordsPerMinute);
+    return `${minutes} min read`;
+  });
 
   // ── Copy static assets as-is ──
   eleventyConfig.addPassthroughCopy("src/css");
