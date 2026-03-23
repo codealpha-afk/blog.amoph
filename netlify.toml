@@ -1,3 +1,18 @@
 [build]
-  command = "npm install && npm run build"
-  publish = "public"
+  command   = "npx @11ty/eleventy"
+  publish   = "public"
+  base      = "."
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# Serve the admin SPA correctly — prevents /admin redirecting to homepage
+[[redirects]]
+  from   = "/admin"
+  to     = "/admin/index.html"
+  status = 200
+
+[[redirects]]
+  from   = "/admin/*"
+  to     = "/admin/index.html"
+  status = 200
