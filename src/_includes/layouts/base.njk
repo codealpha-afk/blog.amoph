@@ -77,22 +77,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet">
 
   {# ── Stylesheets ──────────────────────────────────────────── 
-     STEP 1: Shared brand (CDN from amoph repo).
-     Edit at: amoph/shared/brand.css → push → auto-updates here.
-     Cache note: jsDelivr caches @main for ~24hrs.
-     For instant updates, swap @main for a commit SHA.
-  ──────────────────────────────────────────────────────────── #}
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/codealpha-afk/amoph@main/shared/brand.css">
-
-  {# ── STEP 2: Blog-only styles (local).
-     Only put blog-specific CSS in this file.
-     See src/css/blog.css for what belongs here.
-  ──────────────────────────────────────────────────────────── #}
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/codealpha-afk/amoph@main/styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/codealpha-afk/amoph@YOURSHA/styles.css">
 
   {# ── Favicon ─────────────────────────────────────────────── #}
   <link rel="icon" type="image/ico" href="/images/logos/favicon.ico">
-  <link rel="apple-touch-icon"      href="/images/logos/favicon.ico">
+  <link rel="apple-touch-icon"      href="/images/logos/favicon.png">
 
   {# ── Per-page head block ──────────────────────────────────── 
      Child layouts (e.g. post.njk) can inject extra <meta> or
