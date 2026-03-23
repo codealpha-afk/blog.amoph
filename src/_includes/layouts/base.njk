@@ -1,51 +1,138 @@
+{# =============================================================
+   AMOPH · blog.amoph.org
+   src/_includes/layouts/base.njk
+   ─────────────────────────────────────────────────────────────
+   PURPOSE:
+     Base HTML wrapper for every page on blog.amoph.org.
+     Eleventy renders all pages through this layout.
+
+   CSS LOADING ORDER (important — do not reorder):
+     1. brand.css   → loaded from jsDelivr CDN (amoph repo)
+                      This is the shared stylesheet: tokens,
+                      reset, header, footer, nav, utilities.
+                      Source of truth lives in amoph/shared/brand.css.
+                      CDN URL is pinned to @main branch.
+                      To pin to a specific commit for cache-busting:
+                      change @main to @<commit-sha>
+
+     2. blog.css    → local to this repo (src/css/blog.css)
+                      Contains ONLY blog-specific styles:
+                      post layout, blog listing, blog cards,
+                      sidebar, pagination, post body typography.
+                      Do NOT put header/footer/token styles here.
+
+   SCRIPT LOADING:
+     shared/script.js is loaded from jsDelivr CDN.
+     window.AMOPH_BLOG_MODE = true is set BEFORE loading the
+     script so it knows to skip fetch injection (header/footer
+     are already in the DOM from Nunjucks partials).
+
+   PARTIALS (header.html / footer.html):
+     Eleventy includes them from src/_includes/partials/.
+     Those files must stay in sync with amoph/shared/header.html
+     and amoph/shared/footer.html.
+     Run `npm run sync-shared` (or copy manually) to update them.
+
+   OPEN GRAPH:
+     og:type is 'article' for posts, 'website' for other pages.
+     ogImage falls back to the blog OG image if not set in
+     front matter.
+   ============================================================= #}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  {# ── Page title ──────────────────────────────────────────── #}
   <title>{{ title }} | Ancient Martinist Order Philippines</title>
   <meta name="description" content="{{ description }}">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://blog.amoph.org{{ page.url }}">
 
-<!-- Open Graph / Social Sharing -->
-<meta property="og:type" content="{{ 'article' if layout == 'layouts/post.njk' else 'website' }}">
-<meta property="og:url" content="https://blog.amoph.org{{ page.url }}">
-<meta property="og:title" content="{{ title }} | Ancient Martinist Order Philippines">
-<meta property="og:description" content="{{ description }}">
-<meta property="og:image" content="{{ ogImage if ogImage else 'https://blog.amoph.org/images/og-images/blog.jpg' }}">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="{{ title }}">
-<meta property="og:locale" content="en_PH">
+  {# ── Open Graph / Social Sharing ─────────────────────────── #}
+  <meta property="og:type"        content="{{ 'article' if layout == 'layouts/post.njk' else 'website' }}">
+  <meta property="og:url"         content="https://blog.amoph.org{{ page.url }}">
+  <meta property="og:title"       content="{{ title }} | Ancient Martinist Order Philippines">
+  <meta property="og:description" content="{{ description }}">
+  <meta property="og:image"       content="{{ ogImage if ogImage else 'https://blog.amoph.org/images/og-images/blog.jpg' }}">
+  <meta property="og:image:width"  content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt"    content="{{ title }}">
+  <meta property="og:locale"       content="en_PH">
 
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ title }} | Ancient Martinist Order Philippines">
-<meta name="twitter:description" content="{{ description }}">
-<meta name="twitter:image" content="{{ ogImage if ogImage else 'https://blog.amoph.org/images/og-images/blog.jpg' }}">
-  <!-- Fonts -->
+  {# ── Twitter Card ─────────────────────────────────────────── #}
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="{{ title }} | Ancient Martinist Order Philippines">
+  <meta name="twitter:description" content="{{ description }}">
+  <meta name="twitter:image"       content="{{ ogImage if ogImage else 'https://blog.amoph.org/images/og-images/blog.jpg' }}">
+
+  {# ── Fonts ────────────────────────────────────────────────── 
+     Preconnect first for performance, then the font request.
+     These fonts are also required by brand.css — do not remove.
+  ──────────────────────────────────────────────────────────── #}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/css/styles.css">
+  {# ── Stylesheets ──────────────────────────────────────────── 
+     STEP 1: Shared brand (CDN from amoph repo).
+     Edit at: amoph/shared/brand.css → push → auto-updates here.
+     Cache note: jsDelivr caches @main for ~24hrs.
+     For instant updates, swap @main for a commit SHA.
+  ──────────────────────────────────────────────────────────── #}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/codealpha-afk/amoph@main/shared/brand.css">
 
+  {# ── STEP 2: Blog-only styles (local).
+     Only put blog-specific CSS in this file.
+     See src/css/blog.css for what belongs here.
+  ──────────────────────────────────────────────────────────── #}
+  <link rel="stylesheet" href="/css/blog.css">
+
+  {# ── Favicon ─────────────────────────────────────────────── #}
   <link rel="icon" type="image/ico" href="/images/logos/favicon.ico">
-  <link rel="apple-touch-icon" href="/images/logos/favicon.ico">
+  <link rel="apple-touch-icon"      href="/images/logos/favicon.ico">
 
+  {# ── Per-page head block ──────────────────────────────────── 
+     Child layouts (e.g. post.njk) can inject extra <meta> or
+     <link> tags here if needed.
+  ──────────────────────────────────────────────────────────── #}
   {% block head %}{% endblock %}
 </head>
+
 <body>
 
+  {# ── Header ───────────────────────────────────────────────── 
+     Rendered at build time from the shared partial.
+     Keep src/_includes/partials/header.html in sync with
+     amoph/shared/header.html.
+  ──────────────────────────────────────────────────────────── #}
   {% include "partials/header.html" %}
 
+  {# ── Page content ─────────────────────────────────────────── 
+     Injected by Eleventy from the child layout or .md file.
+  ──────────────────────────────────────────────────────────── #}
   {{ content | safe }}
 
+  {# ── Footer ───────────────────────────────────────────────── 
+     Rendered at build time from the shared partial.
+     Keep src/_includes/partials/footer.html in sync with
+     amoph/shared/footer.html.
+  ──────────────────────────────────────────────────────────── #}
   {% include "partials/footer.html" %}
 
-  <script src="/js/script.js"></script>
+  {# ── Scripts ──────────────────────────────────────────────── 
+     AMOPH_BLOG_MODE tells shared/script.js to skip the
+     fetch-and-inject step (header/footer already in DOM).
+     Must be set BEFORE loading the script.
+  ──────────────────────────────────────────────────────────── #}
+  <script>window.AMOPH_BLOG_MODE = true;</script>
+  <script src="https://cdn.jsdelivr.net/gh/codealpha-afk/amoph@main/shared/script.js"></script>
+
+  {# ── Per-page script block ────────────────────────────────── 
+     Child layouts can add page-specific scripts here.
+  ──────────────────────────────────────────────────────────── #}
   {% block scripts %}{% endblock %}
 
 </body>
