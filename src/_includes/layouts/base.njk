@@ -68,6 +68,8 @@
   <meta name="twitter:description" content="{{ description }}">
   <meta name="twitter:image"       content="{{ ogImage if ogImage else 'https://blog.amoph.org/images/og-images/blog.jpg' }}">
 
+  const sitemap = require("eleventy-plugin-sitemap");
+
   {# ── Fonts ────────────────────────────────────────────────── 
      Preconnect first for performance, then the font request.
      These fonts are also required by brand.css — do not remove.
