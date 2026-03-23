@@ -1,0 +1,200 @@
+/* =============================================================
+   blog.amoph.org — src/css/blog.css
+   Blog-specific styles only.
+   Base tokens, header, footer, and utilities come from
+   styles.css loaded via jsDelivr CDN in base.njk.
+   ============================================================= */
+
+/* ─────────────────────────────────────────
+   BLOG LISTING LAYOUT
+───────────────────────────────────────── */
+
+.blog-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 5rem;
+  align-items: start;
+}
+
+/* ─────────────────────────────────────────
+   BLOG CARDS
+───────────────────────────────────────── */
+
+.blog-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.blog-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 2.5rem 0;
+  border-bottom: 1px solid rgba(176,184,193,0.1);
+  transition: background 0.2s;
+  position: relative;
+}
+
+.blog-card:first-child {
+  border-top: 1px solid rgba(176,184,193,0.1);
+}
+
+.blog-card:hover {
+  background: rgba(158,42,42,0.03);
+}
+
+.blog-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.blog-card__date {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.blog-card__tag {
+  display: inline-block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  border: 1px solid rgba(176,184,193,0.2);
+  padding: 2px 8px;
+  width: fit-content;
+}
+
+.blog-card__title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+  line-height: 1.2;
+  color: var(--parchment);
+  margin-top: 0.4rem;
+  transition: color 0.2s;
+}
+
+.blog-card:hover .blog-card__title {
+  color: var(--gold-light);
+}
+
+.blog-card__excerpt {
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: rgba(245,240,232,0.65);
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  max-width: 640px;
+}
+
+/* ─────────────────────────────────────────
+   SIDEBAR
+───────────────────────────────────────── */
+
+.blog-sidebar {
+  position: sticky;
+  top: 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.sidebar-widget {
+  border: 1px solid rgba(176,184,193,0.1);
+  padding: 1.75rem;
+}
+
+.sidebar-widget__title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(176,184,193,0.1);
+}
+
+.sidebar-widget ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.sidebar-widget ul li a {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  color: rgba(245,240,232,0.7);
+  text-decoration: none;
+  display: block;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid rgba(176,184,193,0.06);
+  transition: color 0.2s, padding-left 0.2s;
+  line-height: 1.4;
+}
+
+.sidebar-widget ul li:last-child a {
+  border-bottom: none;
+}
+
+.sidebar-widget ul li a:hover {
+  color: var(--gold-light);
+  padding-left: 0.4rem;
+}
+
+/* ─────────────────────────────────────────
+   PAGE HERO OVERRIDE FOR BLOG
+   (in case page-hero h1 needs to match
+   the design — blog.njk uses h1 not h2)
+───────────────────────────────────────── */
+
+.page-hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1.1;
+  color: var(--parchment);
+}
+
+.page-hero h1 em {
+  color: var(--gold);
+  font-style: italic;
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .blog-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .blog-sidebar {
+    position: static;
+  }
+
+  .blog-card {
+    padding: 2rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .blog-card__title {
+    font-size: 1.4rem;
+  }
+
+  .sidebar-widget {
+    padding: 1.25rem;
+  }
+}
