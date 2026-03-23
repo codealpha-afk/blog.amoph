@@ -1,6 +1,5 @@
 const { DateTime } = require("luxon");
 const Image = require("@11ty/eleventy-img");
-const rss = require("@11ty/eleventy-plugin-rss");
 const sitemap = require("eleventy-plugin-sitemap");
 
 // ── Image shortcode ──
