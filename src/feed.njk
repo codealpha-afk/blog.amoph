@@ -1,0 +1,26 @@
+---
+layout: none
+permalink: /feed.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>The Martinist Journal</title>
+  <subtitle>Writings on Martinism, Western esotericism, and the inner life.</subtitle>
+  <link href="https://blog.amoph.org/feed.xml" rel="self"/>
+  <link href="https://blog.amoph.org/"/>
+  <updated>{{ collections.posts | rssLastUpdatedDate }}</updated>
+  <id>https://blog.amoph.org/</id>
+  <author>
+    <name>Ancient Martinist Order Philippines</name>
+  </author>
+  {% for post in collections.posts %}
+  <entry>
+    <title>{{ post.data.title }}</title>
+    <link href="https://blog.amoph.org{{ post.url }}"/>
+    <updated>{{ post.date | rssDate }}</updated>
+    <id>https://blog.amoph.org{{ post.url }}</id>
+    <content type="html">{{ post.templateContent | htmlToAbsoluteUrls("https://blog.amoph.org") }}</content>
+  </entry>
+  {% endfor %}
+</feed>
