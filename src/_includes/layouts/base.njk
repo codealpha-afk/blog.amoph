@@ -68,7 +68,7 @@
   <meta name="twitter:description" content="{{ description }}">
   <meta name="twitter:image"       content="{{ ogImage if ogImage else 'https://blog.amoph.org/images/og-images/blog.jpg' }}">
 
-  const sitemap = require("eleventy-plugin-sitemap");
+  <link rel="alternate" type="application/atom+xml" title="The Martinist Journal" href="/feed.xml">
 
   {# ── Fonts ────────────────────────────────────────────────── 
      Preconnect first for performance, then the font request.
