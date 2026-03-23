@@ -1,0 +1,46 @@
+backend:
+  name: git-gateway
+  repo: codealpha-afk/amoph
+  branch: blog.amoph.org
+
+media_folder: "src/images"
+public_folder: "/images"
+
+collections:
+  - name: "posts"
+    label: "Blog Posts"
+    folder: "src/posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+
+      - label: "Date"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+
+      - label: "Description"
+        name: "description"
+        widget: "string"
+        hint: "Short excerpt shown in post previews"
+        required: false
+
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        hint: "Comma-separated tags, e.g. javascript, web"
+        required: false
+
+      - label: "Layout"
+        name: "layout"
+        widget: "hidden"
+        default: "layouts/post.njk"
+
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
