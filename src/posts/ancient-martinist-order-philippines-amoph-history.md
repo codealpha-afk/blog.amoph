@@ -13,8 +13,6 @@ draft: false
 tags: posts
 layout: layouts/post.njk
 ---
-A Brief Account of the Ancient Martinist Order in the Philippines (AMOPH)
-
 The contemporary work of the Ancient Martinist Order in the Philippines (AMOPH) formally began around 2015. Initial contact was established through online correspondence with Sar HDO AGLA in Perth, through which the first transmission into the Martinist tradition was received by a Filipino aspirant. The first initiation was conducted in 2016 in Cebu, Philippines.
 
 From this beginning, the Work was established locally. The transmission provided the necessary foundation for the Order’s presence in the Philippines, allowing its teachings and initiatic practices to take root and be carried forward in accordance with Martinist principles.
