@@ -9,7 +9,7 @@ description: A concise historical account of the Ancient Martinist Order in the
 excerpt: This account outlines the establishment and development of the Ancient
   Martinist Order in the Philippines (AMOPH), tracing its initiatic beginnings
   in 2015 and its continued work within the country and the region.
-draft: false
+draft: true
 tags: posts
 layout: layouts/post.njk
 ---
